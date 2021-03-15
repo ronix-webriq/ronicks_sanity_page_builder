@@ -1,0 +1,85 @@
+import {AiOutlineCreditCard} from 'react-icons/ai'
+export default {
+    title: 'Hero Section',
+    name: 'hero',
+    icon: AiOutlineCreditCard,
+    type: 'object',
+    fields: [  
+        {
+            title: 'Title',
+            name: 'title',
+            type: 'string'
+        },
+        {
+            title: 'Description',
+            name: 'description',
+            type: 'string'
+        },
+        {
+            title: 'Main Image',
+            name: 'mainImage',
+            type: 'array',
+            validation: Rule => Rule.min(0).max(1),
+            of: [{type: 'imageElement'}],
+            options: {
+                layout: 'grid'
+            },
+           
+        },        
+        {
+            title: 'Buttons Content',
+            name: 'buttonsContent',
+            type: 'array',
+            of: [
+                {type: 'button'}
+            ]
+        }, 
+        {
+            title: 'Background Image',
+            name: 'backgroundImage',
+            type: 'array',
+            validation: Rule => Rule.min(0).max(1),
+            of: [{type: 'imageElement'}],
+            options: {
+                layout: 'grid'
+            },           
+        }, 
+        {
+            title: 'Variant [Styling]',
+            name: 'variant',
+            type: 'string',
+            options: {
+                list: [
+                    {
+                        title: 'Variant A', value: 'variant_a'
+                    },
+                    {
+                        title: 'Variant B', value: 'variant_b'
+                    },
+                    {
+                        title: 'Variant C', value: 'variant_c'
+                    },
+                    {
+                        title: 'Variant D', value: 'variant_d'
+                    },
+                    {
+                        title: 'Variant E', value: 'variant_e'
+                    }
+                ]
+            }
+        }       
+    ],
+    preview: {
+        select: {                      
+            media: 'bgImageCover'
+        },
+        prepare(selection) {
+            const {title, alignment, media} = selection;
+            return {           
+                media: media, 
+                title: 'Hero Section',
+                subtitle: 'This will be used in your Header Section'
+            }
+        }
+    }
+}
